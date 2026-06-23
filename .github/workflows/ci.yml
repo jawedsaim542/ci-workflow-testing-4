@@ -1,0 +1,44 @@
+name: CI Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # -------------------------------------------------------------
+      # 1. [OPTIONAL] SETUP ENVIRONMENT & RUNTIMES
+      # Add setup steps for your language here if needed.
+      # Examples: actions/setup-node, actions/setup-python, actions/setup-go, etc.
+      # -------------------------------------------------------------
+
+      # -------------------------------------------------------------
+      # 2. RUN TESTS & PIPE LOGS
+      # Replace 'YOUR_TEST_COMMAND' with: npm test, pytest, cargo test, etc.
+      # -------------------------------------------------------------
+      - name: Run Tests
+        shell: bash
+        run: |
+          pip install -r requirements.txt && pytest 2>&1 | tee build_failure.log
+
+      # -------------------------------------------------------------
+      # 3. RUN AI BUILD ASSISTANT
+      # Diagnoses the build log file created above on failure.
+      # -------------------------------------------------------------
+      - name: AI Build Assistant
+        if: failure()
+        uses: saimjawed254/accenture-intern-assignment@main
+        with:
+          log-file: 'build_failure.log'
+          gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
