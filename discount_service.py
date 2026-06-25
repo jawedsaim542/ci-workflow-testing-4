@@ -1,21 +1,22 @@
 """Service to manage coupon codes and discount validations."""
 
-from typing import Any
-
-# Active coupon repository mapping code to discount rate (as float decimal)
 COUPONS = {
     "WELCOME10": 0.10,
     "SUMMER15": 0.15,
     "VIP20": 0.20,
 }
 
-def validate_coupon(code: str) -> float:
-    """Validate a coupon code and return its discount rate.
+class DiscountService:
+    """Service to handle coupon discounts."""
     
-    If the coupon code is not active or invalid, returns 0.0.
-    """
-    if not code:
-        return 0.0
+    def __init__(self) -> None:
+        self.coupon_list = COUPONS
         
-    normalized_code = code.strip().upper()
-    return COUPONS.get(normalized_code, 0.0)
+    def get_discount_rate(self, code: str) -> float:
+        """Validate a coupon code and return its discount rate."""
+        if not code:
+            return 0.0
+            
+        normalized_code = code.strip().upper()
+        # Bug: referencing undefined self.coupons instead of self.coupon_list
+        return self.coupons.get(normalized_code, 0.0)
