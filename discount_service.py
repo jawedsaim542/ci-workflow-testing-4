@@ -1,6 +1,6 @@
 """Service to manage coupon codes and discount validations."""
 
-from collections import Mapping
+from collections.abc import Mapping
 from typing import Any
 
 # Active coupon repository mapping code to discount rate (as float decimal)
