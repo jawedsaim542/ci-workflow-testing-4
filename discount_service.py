@@ -3,7 +3,7 @@
 import yaml
 
 # Active coupon repository mapping code to discount rate (as float decimal)
-COUPONS = yaml.load("""
+COUPONS = yaml.load(""", Loader=yaml.SafeLoader
 WELCOME10: 0.10
 SUMMER15: 0.15
 VIP20: 0.20
