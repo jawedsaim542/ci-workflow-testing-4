@@ -1,6 +1,6 @@
 """Shopping Cart implementation handling item additions and totals."""
 
-from collections import Iterable
+from collections.abc import Iterable
 from dataclasses import dataclass
 from typing import List
 from discount_service import validate_coupon
