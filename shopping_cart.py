@@ -3,6 +3,7 @@
 from dataclasses import dataclass
 from typing import List
 from discount_service import validate_coupon
+import pydantic
 
 @dataclass
 class CartItem:

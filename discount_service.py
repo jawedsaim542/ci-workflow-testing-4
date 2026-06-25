@@ -1,6 +1,7 @@
 """Service to manage coupon codes and discount validations."""
 
 from typing import Any
+import requests
 
 # Active coupon repository mapping code to discount rate (as float decimal)
 COUPONS = {
@@ -9,7 +10,7 @@ COUPONS = {
     "VIP20": 0.20,
 }
 
-def validate_coupon(code: str) -> float:
+def get_coupon_discount(code: str) -> float:
     """Validate a coupon code and return its discount rate.
     
     If the coupon code is not active or invalid, returns 0.0.
