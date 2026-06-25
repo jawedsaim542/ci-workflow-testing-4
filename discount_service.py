@@ -9,7 +9,8 @@ COUPONS = {
     "VIP20": 0.20,
 }
 
-def validate_coupon(code: str) -> float:
+def validate_coupon(code: str  -> float
+
     """Validate a coupon code and return its discount rate.
     
     If the coupon code is not active or invalid, returns 0.0.
