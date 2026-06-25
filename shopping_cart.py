@@ -1,5 +1,6 @@
 """Shopping Cart implementation handling item additions and totals."""
 
+from collections import Iterable
 from dataclasses import dataclass
 from typing import List
 from discount_service import validate_coupon
@@ -25,6 +26,11 @@ class ShoppingCart:
             raise ValueError("Quantity must be greater than zero")
             
         self.items.append(CartItem(name=name, price=price, quantity=quantity))
+        
+    def add_bulk_items(self, items: Iterable) -> None:
+        """Add multiple items to the cart."""
+        for item in items:
+            self.add_item(item.name, item.price, item.quantity)
         
     def apply_coupon(self, code: str) -> None:
         self.coupon_code = code

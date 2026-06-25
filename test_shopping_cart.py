@@ -1,7 +1,7 @@
 """Unit tests for the ShoppingCart application."""
 
 import pytest
-from shopping_cart import ShoppingCart
+from shopping_cart import ShoppingCart, CartItem
 
 def test_empty_cart() -> None:
     cart = ShoppingCart()
@@ -51,3 +51,13 @@ def test_invalid_quantity() -> None:
     cart = ShoppingCart()
     with pytest.raises(ValueError, match="Quantity must be greater than zero"):
         cart.add_item("Item", 10.0, 0)
+
+def test_add_bulk_items() -> None:
+    cart = ShoppingCart()
+    items = [
+        CartItem("Item A", 10.0, 2),
+        CartItem("Item B", 20.0, 1)
+    ]
+    cart.add_bulk_items(items)
+    assert cart.calculate_subtotal() == 40.0
+
