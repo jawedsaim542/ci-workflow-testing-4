@@ -51,3 +51,13 @@ def test_invalid_quantity() -> None:
     cart = ShoppingCart()
     with pytest.raises(ValueError, match="Quantity must be greater than zero"):
         cart.add_item("Item", 10.0, 0)
+
+def test_coupon_below_threshold() -> None:
+    cart = ShoppingCart(tax_rate=0.08)
+    cart.add_item("Mouse", 25.0, 1) # Subtotal = 25.0
+    cart.apply_coupon("SUMMER15") # Requires 100.0
+    # Subtotal = 25.0 -> Discounted = 25.0 (coupon not applied)
+    # Tax = 25.0 * 0.08 = 2.0
+    # Total = 27.00
+    assert cart.calculate_total() == 27.00
+

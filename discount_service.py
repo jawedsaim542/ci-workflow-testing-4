@@ -1,21 +1,26 @@
 """Service to manage coupon codes and discount validations."""
 
-from typing import Any
+from dataclasses import dataclass
 
-# Active coupon repository mapping code to discount rate (as float decimal)
+@dataclass
+class Coupon:
+    code: str
+    discount_rate: float
+    min_purchase: float = 0.0
+
 COUPONS = {
-    "WELCOME10": 0.10,
-    "SUMMER15": 0.15,
-    "VIP20": 0.20,
+    "WELCOME10": Coupon("WELCOME10", 0.10, 50.0),
+    "SUMMER15": Coupon("SUMMER15", 0.15, 100.0),
+    "VIP20": Coupon("VIP20", 0.20, 150.0),
 }
 
-def validate_coupon(code: str) -> float:
-    """Validate a coupon code and return its discount rate.
+def validate_coupon(code: str) -> Coupon | None:
+    """Validate a coupon code and return its Coupon details.
     
-    If the coupon code is not active or invalid, returns 0.0.
+    If the coupon code is not active or invalid, returns None.
     """
     if not code:
-        return 0.0
+        return None
         
     normalized_code = code.strip().upper()
-    return COUPONS.get(normalized_code, 0.0)
+    return COUPONS.get(normalized_code, None)
