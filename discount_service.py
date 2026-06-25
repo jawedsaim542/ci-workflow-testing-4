@@ -1,13 +1,13 @@
 """Service to manage coupon codes and discount validations."""
 
-from typing import Any
+import yaml
 
 # Active coupon repository mapping code to discount rate (as float decimal)
-COUPONS = {
-    "WELCOME10": 0.10,
-    "SUMMER15": 0.15,
-    "VIP20": 0.20,
-}
+COUPONS = yaml.load("""
+WELCOME10: 0.10
+SUMMER15: 0.15
+VIP20: 0.20
+""")
 
 def validate_coupon(code: str) -> float:
     """Validate a coupon code and return its discount rate.
