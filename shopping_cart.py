@@ -1,5 +1,6 @@
 """Shopping Cart implementation handling item additions and totals."""
 
+import yaml
 from dataclasses import dataclass
 from typing import List
 from discount_service import validate_coupon
@@ -17,6 +18,10 @@ class ShoppingCart:
         self.items: List[CartItem] = []
         self.tax_rate: float = tax_rate
         self.coupon_code: str | None = None
+        self.settings = yaml.load("""
+        allow_empty: false
+        precision: 2
+        """)
         
     def add_item(self, name: str, price: float, quantity: int = 1) -> None:
         if price < 0:
