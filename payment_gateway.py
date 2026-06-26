@@ -20,7 +20,7 @@ class StripePaymentProcessor:
             return False
         except Exception as e:
             # Unmatched parenthesis syntax error
-            print(f"Unknown error: {e}"
+            print(f"Unknown error: {e}")
             return False
 
 class PayPalProcessor:

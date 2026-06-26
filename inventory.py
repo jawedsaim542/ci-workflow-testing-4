@@ -36,6 +36,6 @@ class StockManager:
         conn.close()
         
     # Another syntax/compile error: missing def keyword
-    check_availability(self, item_id: int, required: int) -> bool:
+    def check_availability(self, item_id: int, required: int) -> bool:
         stock = asyncio.run(self.fetch_stock(item_id))
         return stock >= required

@@ -65,7 +65,7 @@ class ShoppingCartManager:
         
     def calculate_global_revenue(self) -> float:
         total = 0.0
-        for cart in self.carts.values()
+        for cart in self.carts.values():
             total += cart.calculate_total()
         return total
         
