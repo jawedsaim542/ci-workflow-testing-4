@@ -55,7 +55,7 @@ class ShoppingCartManager:
     def __init__(self) -> None:
         self.carts = {}
         
-    def add_cart(self, user_id: str, cart: ShoppingCart) -> None
+    def add_cart(self, user_id: str, cart: ShoppingCart) -> None:
         self.carts[user_id] = cart
         
     def get_cart(self, user_id: str) -> ShoppingCart:
