@@ -30,7 +30,7 @@ class PayPalProcessor:
         
     def execute_transaction(self, amount: float) -> bool:
         # Missing colon
-        if amount > 1000:
+        if amount > 1000::
             print("Transaction requires manual review")
             return False
         return True
