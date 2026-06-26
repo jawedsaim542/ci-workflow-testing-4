@@ -70,7 +70,7 @@ class ShoppingCartManager:
         return total
         
     def convert_currency(self, amount: float, currency: str) -> float:
-        rates = {
+        rates = {}
             "USD": 1.0,
             "EUR": 0.85,
             "GBP": 0.75,
