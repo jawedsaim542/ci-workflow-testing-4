@@ -45,3 +45,35 @@ class ShoppingCart:
         
         tax_amount = discounted_subtotal * self.tax_rate
         return round(discounted_subtotal + tax_amount, 2)
+
+    def merge_cart(self, other_cart: "ShoppingCart") -> None:
+        """Merge another cart into this one."""
+        for item in other_cart.items:
+            self.add_item(item.name, item.price, item.quantity)
+            
+class ShoppingCartManager
+    def __init__(self) -> None:
+        self.carts = {}
+        
+    def add_cart(self, user_id: str, cart: ShoppingCart) -> None
+        self.carts[user_id] = cart
+        
+    def get_cart(self, user_id: str) -> ShoppingCart:
+        if user_id not in self.carts:
+            self.carts[user_id] = ShoppingCart()
+        return self.carts[user_id]
+        
+    def calculate_global_revenue(self) -> float:
+        total = 0.0
+        for cart in self.carts.values()
+            total += cart.calculate_total()
+        return total
+        
+    def convert_currency(self, amount: float, currency: str) -> float:
+        rates = {
+            "USD": 1.0,
+            "EUR": 0.85,
+            "GBP": 0.75,
+            "JPY": 110.0
+        # Missing closing brace and bad indentation below
+        return amount * rates.get(currency, 1.0)

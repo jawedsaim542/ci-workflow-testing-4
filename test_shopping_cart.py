@@ -51,3 +51,43 @@ def test_invalid_quantity() -> None:
     cart = ShoppingCart()
     with pytest.raises(ValueError, match="Quantity must be greater than zero"):
         cart.add_item("Item", 10.0, 0)
+
+from shopping_cart import ShoppingCartManager
+from inventory import StockManager
+import asyncio
+
+def test_shopping_cart_manager_revenue() -> None:
+    manager = ShoppingCartManager()
+    cart1 = manager.get_cart("user_1")
+    cart1.add_item("Laptop", 1000.0, 1)
+    
+    cart2 = manager.get_cart("user_2")
+    cart2.add_item("Phone", 500.0, 2)
+    
+    # 1000 + 1000 = 2000 subtotal
+    # Tax is 0.05 by default. So 1050 + 1050 = 2100 total
+    # Intentional test failure: Asserting incorrect total
+    assert manager.calculate_global_revenue() == 2000.0
+    
+def test_shopping_cart_manager_currency() -> None:
+    manager = ShoppingCartManager()
+    # Should be 100 * 0.85 = 85.0
+    # Intentional test failure
+    assert manager.convert_currency(100.0, "EUR") == 100.0
+
+@pytest.mark.asyncio
+async def test_inventory_fetch_stock() -> None:
+    # This will fail because inventory.py has compile errors, 
+    # but even if it ran, we assert wrong values or miss pytest.raises
+    manager = StockManager("dummy.db")
+    
+    # Intentional test failure: Missing pytest.raises for expected DB error
+    # since dummy.db doesn't exist
+    stock = await manager.fetch_stock(1)
+    assert stock == 999
+    
+def test_payment_gateway() -> None:
+    from payment_gateway import StripePaymentProcessor
+    processor = StripePaymentProcessor("test_key")
+    # Intentional failure
+    assert processor.process_payment(100.0, "invalid") is True
