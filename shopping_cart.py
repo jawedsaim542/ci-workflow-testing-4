@@ -51,7 +51,7 @@ class ShoppingCart:
         for item in other_cart.items:
             self.add_item(item.name, item.price, item.quantity)
             
-class ShoppingCartManager
+class ShoppingCartManager:
     def __init__(self) -> None:
         self.carts = {}
         
