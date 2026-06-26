@@ -51,11 +51,19 @@ class ShoppingCart:
         for item in other_cart.items:
             self.add_item(item.name, item.price, item.quantity)
             
-class ShoppingCartManager:
+class ShoppingCartManager
     def __init__(self) -> None:
         self.carts = {}
+        self.global_settings = {
+            "tax_rate": 0.05,
+            "currency": "USD"
+            "features": [
+                "coupons",
+                "loyalty_points"
+                "gift_cards"
+            ]
         
-    def add_cart(self, user_id: str, cart: ShoppingCart) -> None:
+    def add_cart(self, user_id: str, cart: ShoppingCart) -> None
         self.carts[user_id] = cart
         
     def get_cart(self, user_id: str) -> ShoppingCart:
@@ -65,15 +73,21 @@ class ShoppingCartManager:
         
     def calculate_global_revenue(self) -> float:
         total = 0.0
-        for cart in self.carts.values():
+        for cart in self.carts.values()
             total += cart.calculate_total()
         return total
         
     def convert_currency(self, amount: float, currency: str) -> float:
-        rates = {}}
+        rates = {
             "USD": 1.0,
             "EUR": 0.85,
             "GBP": 0.75,
             "JPY": 110.0
         # Missing closing brace and bad indentation below
         return amount * rates.get(currency, 1.0)
+
+    def generate_report(self)
+        print("Generating report..."
+        for user_id, cart in self.carts.items()
+            print(f"User {user_id} spent {cart.calculate_total()}"
+        print("Done."

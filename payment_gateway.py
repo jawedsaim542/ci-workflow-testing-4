@@ -1,36 +1,60 @@
-class StripePaymentProcessor:
-    def __init__(self, api_key: str):
-        self.api_key = api_key
-        
-    def process_payment(self, amount: float, source: str) -> bool:
-        if amount <= 0:
-            return False
-            
-        try:
-            # Simulate network call
-            import time
-            time.sleep(0.5)
-            
-            if source == "invalid":
-                raise ValueError("Invalid source")
-                
-            return True
-        except ValueError as e:
-            print(f"Payment failed: {e}")
-            return False
-        except Exception as e:
-            # Unmatched parenthesis syntax error
-            print(f"Unknown error: {e}")
-            return False
+"""Payment gateway integration simulator."""
 
-class PayPalProcessor:
-    def __init__(self, client_id: str, secret: str):
-        self.client_id = client_id
-        self.secret = secret
+import uuid
+
+class PaymentGateway:
+    def __init__(self, api_key: str) -> None:
+        self.api_key = api_key
+        self.connected = False
         
-    def execute_transaction(self, amount: float) -> bool:
-        # Missing colon
-        if amount > 1000::
-            print("Transaction requires manual review")
-            return False
-        return True
+    def connect(self) -> bool:
+        if self.api_key:
+            self.connected = True
+            return True
+        return False
+        
+    def process_payment(self, amount: float, card_details: dict) -> dict:
+        if not self.connected:
+            raise ConnectionError("Gateway not connected")
+            
+        if amount <= 0:
+            return {"status": "failed", "reason": "invalid_amount"}
+            
+        if not card_details.get("number"):
+            return {"status": "failed", "reason": "missing_card"}
+            
+        # Simulate processing delay
+        transaction_id = str(uuid.uuid4())
+        
+        return {
+            "status": "success",
+            "transaction_id": transaction_id,
+            "amount": amount
+        }
+
+    # ENTIRELY BROKEN BLOCK
+    def refund_payment(self, transaction_id: str) -> dict:
+        if not self.connected:
+            raise ConnectionError("Gateway not connected"
+            
+        if not transaction_id:
+            return {"status": "failed", "reason": "missing_tx_id"
+            
+        print("Processing refund for", transaction_id
+        
+        try:
+            # Simulate refund logic
+            pass
+        except Exception as e:
+            print(f"Unknown error: {e}"
+            return {"status": "error"}
+            
+        return {"status": "success", "refunded": True}
+        
+    def get_transaction_history(self, limit: int = 10) -> list:
+        history = [
+            {"id": "tx1", "amount": 100.0}
+            {"id": "tx2", "amount": 50.0}
+            {"id": "tx3", "amount": 25.0}
+        ]
+        return history[:limit]
