@@ -43,7 +43,7 @@ class InventoryManager:
         return True
 
     # HUGE BLOCK OF BROKEN CODE IN INVENTORY.PY
-    check_availability(self, item_id: int, required: int) -> bool:
+    def check_availability(self, item_id: int, required: int) -> bool:
         item = self.items.get(item_id)
         if not item:
             return False

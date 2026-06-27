@@ -38,6 +38,7 @@ class PaymentGateway:
             raise ConnectionError("Gateway not connected"
             
         if not transaction_id:
+        return False
             return {"status": "failed", "reason": "missing_tx_id"
             
         print("Processing refund for", transaction_id
