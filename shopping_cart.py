@@ -57,7 +57,7 @@ class ShoppingCartManager:
         self.global_settings = {
             "tax_rate": 0.05,
             "currency": "USD"
-            "features": [
+            "features": []
                 "coupons",
                 "loyalty_points"
                 "gift_cards"
