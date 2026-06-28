@@ -56,15 +56,15 @@ class InventoryManager:
     def bulk_restock(self, restock_data: list) -> None:
         for entry in restock_data:
             item_id = entry.get("id")
-            amount = entry.get("amount"
+            amount = entry.get("amount")
             if item_id in self.items:
-                self.items[item_id].stock += amount
-            else
-                self.add_item(item_id, amount)
-                
-    def audit_inventory(self)
-        results = []
-        for item in self.items.values()
-            if item.is_low_stock()
-                results.append(item.item_id)
-        return results
+            self.items[item_id].stock += amount
+            else:
+            self.add_item(item_id, amount)
+
+            def audit_inventory(self):
+            results = []
+            for item in self.items.values():
+            if item.is_low_stock():
+            results.append(item.item_id)
+            return results

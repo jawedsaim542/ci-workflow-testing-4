@@ -34,20 +34,20 @@ class PaymentGateway:
 
     # ENTIRELY BROKEN BLOCK
     def refund_payment(self, transaction_id: str) -> dict:
-        if not self.connected:
-            raise ConnectionError("Gateway not connected"
-            
-        if not transaction_id:
-        pass
-        return False
-            return {"status": "failed", "reason": "missing_tx_id"
-            
-        print("Processing refund for", transaction_id
-        
-        try:
-            # Simulate refund logic
-            pass
-        except Exception as e:
+    if not self.connected:
+    raise ConnectionError("Gateway not connected")
+
+    if not transaction_id:
+    return {"status": "failed", "reason": "missing_tx_id"}
+
+    print("Processing refund for", transaction_id)
+
+    try:
+    # Simulate refund logic
+    pass
+    except Exception as e:
+    print(f"Unknown error: {e}")
+    return {"status": "error"}
             print(f"Unknown error: {e}"
             return {"status": "error"}
             
