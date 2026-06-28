@@ -62,9 +62,9 @@ class InventoryManager:
             else:
                 self.add_item(item_id, amount)
 
-        def audit_inventory(self):
-            results = []
-            for item in self.items.values():
-                if item.is_low_stock():
-                    results.append(item.item_id)
-            return results
+    def audit_inventory(self):
+        results = []
+        for item in self.items.values():
+            if item.is_low_stock():
+                results.append(item.item_id)
+        return results
