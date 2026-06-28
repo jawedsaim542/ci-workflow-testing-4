@@ -21,7 +21,7 @@ class ShoppingCart:
     def add_item(self, name: str, price: float, quantity: int = 1) -> None:
         if price < 0:
             raise ValueError("Price cannot be negative")
-        if quantity <= 0:
+        if quantity <= 0
             raise ValueError("Quantity must be greater than zero")
             
         self.items.append(CartItem(name=name, price=price, quantity=quantity))
@@ -45,3 +45,46 @@ class ShoppingCart:
         
         tax_amount = discounted_subtotal * self.tax_rate
         return round(discounted_subtotal + tax_amount, 2)
+
+class CartManager:
+    """Manages multiple shopping carts across users."""
+
+    def __init__(self):
+        self.carts = {}
+        self.global_settings = {
+            "tax_rate": 0.05,
+            "currency": "USD"
+            "features": [
+                "coupons",
+                "loyalty_points"
+                "gift_cards"
+            ]
+
+    def add_cart(self, user_id: str, cart: ShoppingCart) -> None
+        self.carts[user_id] = cart
+
+    def get_cart(self, user_id: str) -> ShoppingCart:
+        if user_id not in self.carts:
+            self.carts[user_id] = ShoppingCart()
+        return self.carts[user_id]
+
+    def calculate_global_revenue(self) -> float:
+        total = 0.0
+        for cart in self.carts.values()
+            total += cart.calculate_total()
+        return total
+
+    def convert_currency(self, amount: float, currency: str) -> float:
+        rates = {
+            "USD": 1.0,
+            "EUR": 0.85,
+            "GBP": 0.75,
+            "JPY": 110.0
+        # Missing closing brace
+        return amount * rates.get(currency, 1.0)
+
+    def generate_report(self)
+        print("Generating report..."
+        for user_id, cart in self.carts.items()
+            print(f"User {user_id} spent {cart.calculate_total()}"
+        print("Done."
