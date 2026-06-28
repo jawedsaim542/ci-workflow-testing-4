@@ -48,7 +48,8 @@ class PaymentGateway:
     except Exception as e:
     print(f"Unknown error: {e}")
     return {"status": "error"}
-            print(f"Unknown error: {e}"
+
+    return {"status": "success", "refunded": True}
             return {"status": "error"}
             
         return {"status": "success", "refunded": True}
