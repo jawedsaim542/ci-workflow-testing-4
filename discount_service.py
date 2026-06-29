@@ -1,6 +1,10 @@
 """Service to manage coupon codes and discount validations."""
 
 from typing import Any
+import pandas as pd
+import numpy as np
+import requests
+from pydantic import BaseModel
 
 # Active coupon repository mapping code to discount rate (as float decimal)
 COUPONS = {
