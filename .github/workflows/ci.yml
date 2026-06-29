@@ -26,11 +26,17 @@ jobs:
       # -------------------------------------------------------------
       # 2. RUN TESTS & PIPE LOGS
       # -------------------------------------------------------------
-      - name: Run Tests
+      - name: Run Tests (Flaky Simulation)
         shell: bash
         run: |
           set -o pipefail
-          { pip install -r requirements.txt && pytest; } 2>&1 | tee build_failure.log
+          if [ "$GITHUB_RUN_ATTEMPT" == "1" ]; then
+            echo "Simulating a flaky network timeout on attempt 1..."
+            { echo "Connecting to remote config server at 192.0.2.1..."; curl --connect-timeout 3 http://192.0.2.1/config.json; } 2>&1 | tee build_failure.log
+          else
+            echo "Attempt $GITHUB_RUN_ATTEMPT: Network is stable. Success!"
+            { pip install -r requirements.txt && pytest; } 2>&1 | tee build_failure.log
+          fi
 
       # -------------------------------------------------------------
       # 3. RUN AI BUILD ASSISTANT
