@@ -25,12 +25,12 @@ jobs:
 
       # -------------------------------------------------------------
       # 2. RUN TESTS & PIPE LOGS
-      # Replace 'YOUR_TEST_COMMAND' with: npm test, pytest, cargo test, etc.
       # -------------------------------------------------------------
       - name: Run Tests
         shell: bash
         run: |
-          pip install -r requirements.txt && pytest 2>&1 | tee build_failure.log
+          set -o pipefail
+          { pip install -r requirements.txt && pytest; } 2>&1 | tee build_failure.log
 
       # -------------------------------------------------------------
       # 3. RUN AI BUILD ASSISTANT
@@ -38,7 +38,7 @@ jobs:
       # -------------------------------------------------------------
       - name: AI Build Assistant
         if: failure()
-        uses: saimjawed254/accenture-intern-assignment@main
+        uses: saimjawed254/autonomous-ci-cd-build-assistant@main
         with:
           log-file: 'build_failure.log'
           gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
