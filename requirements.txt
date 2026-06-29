@@ -1,5 +1,5 @@
 pytest>=8.0.0
-pandas==99.99.99
-numpy==99.99.99
-requests==99.99.99
-pydantic==99.99.99
+pandas>=2.2.3
+numpy>=1.26.0
+requests>=2.31.0
+pydantic>=2.0.0
