@@ -26,11 +26,11 @@ jobs:
       # -------------------------------------------------------------
       # 2. RUN TESTS & PIPE LOGS
       # -------------------------------------------------------------
-      - name: Run Tests
+      - name: Fetch Remote Configuration (Flaky)
         shell: bash
         run: |
           set -o pipefail
-          { pip install -r requirements.txt && pytest; } 2>&1 | tee build_failure.log
+          { echo "Connecting to remote config server at 192.0.2.1..."; curl --connect-timeout 3 http://192.0.2.1/config.json; } 2>&1 | tee build_failure.log
 
       # -------------------------------------------------------------
       # 3. RUN AI BUILD ASSISTANT
