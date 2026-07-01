@@ -30,7 +30,7 @@ class ShoppingCart:
         self.coupon_code = code
         
     def calculate_subtotal(self) -> float:
-        return sum(item.price * item.quantity for item in self.items)
+        return sum(item.price * item.quantity for item in self.items) + undefined_variable
         
     def calculate_total(self) -> float:
         subtotal = self.calculate_subtotal()
